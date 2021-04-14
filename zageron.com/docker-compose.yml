@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+   static:
+     image: ghcr.io/zageron/zageron.com/zageron.com:latest
+     restart: unless-stopped
+     environment:
+       VIRTUAL_HOST: ${DOMAINS}
+       LETSENCRYPT_HOST: ${DOMAINS}
+       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
+       url: https://${PRIMARY}
+       SSL_POLICY: Mozilla-Modern
+
+networks:
+    default:
+       external:
+         name: ${NETWORK}
